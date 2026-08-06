@@ -5,12 +5,12 @@ KOSPI 지수를 대상으로 세 가지 VaR 모형을 구현하고, 통계적 �
 모형의 예측력을 검증하는 프로젝트.
 
 ## 진행 상황
-- [o]  — 1.데이터 수집 및 수익률 분포 분석
-- [ ]  — 2.Historical / Parametric / Monte Carlo VaR 구현
-- [ ]  — 3.Kupiec POF, Christoffersen, 바젤 트래픽라이트 검정
-- [ ]  — 4.위기구간 분석 및 Expected Shortfall
+- [x]  1.데이터 수집 및 수익률 분포 분석
+- [ ]  2.Historical / Parametric / Monte Carlo VaR 구현
+- [ ]  3.Kupiec POF, Christoffersen, 바젤 트래픽라이트 검정
+- [ ]  4.위기구간 분석 및 Expected Shortfall
 
-## 1 결과
+## 01. 로그수익률 분포 분석 결과
 
 분석 대상: KOSPI 종합지수 (^KS11), 2015-01 ~ 2024-12, 2,453 관측치
 
