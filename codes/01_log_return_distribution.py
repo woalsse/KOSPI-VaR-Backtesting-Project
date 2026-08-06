@@ -20,7 +20,7 @@ TRADING_DAYS = 252
 
 FIGURE_DIR = "figures"
 DATA_DIR = "data"
-FIGURE_NAME = "returns_distribution.png"
+FIGURE_NAME = "01_returns_distribution_image.png"
 DATA_NAME = "kospi_returns.csv"
 
 
