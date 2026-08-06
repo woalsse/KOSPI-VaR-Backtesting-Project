@@ -1,7 +1,5 @@
 # KOSPI-VaR-Backtesting-Project
-KOSPI-VaR-Backtesting-Project by JAEMIN KO
-
-# KOSPI VaR Backtesting
+  by JAEMIN KO
 
 KOSPI 지수를 대상으로 세 가지 VaR 모형을 구현하고, 통계적 검정을 통해
 모형의 예측력을 검증하는 프로젝트.
