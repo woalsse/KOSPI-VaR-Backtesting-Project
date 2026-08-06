@@ -42,3 +42,4 @@ Yahoo Finance API로 전환. 수정종가 기준 일별 데이터.
 pip install -r requirements.txt
 python 01_data_exploration.py
 ```
+
