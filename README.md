@@ -27,7 +27,7 @@ KOSPI 지수를 대상으로 세 가지 VaR 모형을 구현하고, 통계적 �
 이는 정규분포를 가정한 Parametric VaR이 극단적 손실을 과소평가할
 가능성을 시사한다.
 
-![Return Analysis](figures/1_returns_analysis.png)
+![Return Analysis](figures/1_returns_distribution_image.png)
 
 ## 데이터
 
