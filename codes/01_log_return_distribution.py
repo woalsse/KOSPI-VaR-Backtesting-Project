@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 TICKER = "^KS11"
-START_DATE = "2015-01-01"
+START_DATE = "2019-01-01"
 END_DATE = "2026-07-31"
 TRADING_DAYS = 252
 
