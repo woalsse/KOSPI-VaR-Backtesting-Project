@@ -15,7 +15,7 @@ import yfinance as yf
 
 TICKER = "^KS11"
 START_DATE = "2015-01-01"
-END_DATE = "2024-12-31"
+END_DATE = "2026-07-31"
 TRADING_DAYS = 252
 
 FIGURE_DIR = "figures"
