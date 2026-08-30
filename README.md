@@ -108,6 +108,6 @@ Yahoo Finance API로 전환. 수정종가 기준 일별 데이터.
 
 ```
 pip install -r requirements.txt
-python codes/01_log_return_distribution.py
+python codes/01_Log_Return_Distribution.py
 python codes/02_Historical_VaR.py
 ```
