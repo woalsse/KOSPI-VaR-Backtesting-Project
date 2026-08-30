@@ -1,17 +1,24 @@
 # KOSPI-VaR-Backtesting-Project
   by JAEMIN KO
 
-KOSPI 지수를 대상으로 세 가지 VaR 모형을 구현하고, 통계적 검정을 통해
-모형의 예측력을 검증하는 프로젝트.
+2019년부터 2026년까지 KOSPI 지수를 대상으로 세 가지 VaR 모형을 구현하고,
+성격이 상이한 네 차례의 시장 스트레스 국면에서 각 모형의 실패 양상을
+진단하는 프로젝트.
 
 ## 진행 상황
 - [x]  1.데이터 수집 및 수익률 분포 분석
-- [ ]  2.Historical / Parametric / Monte Carlo VaR 구현
+- [ ]  2.Historical (v) / Parametric / Monte Carlo VaR 구현
 - [ ]  3.Kupiec POF, Christoffersen, 바젤 트래픽라이트 검정
 - [ ]  4.위기구간 분석 및 Expected Shortfall
 
-## 01
-## 수익률 분포 분석 결과
+## 저장소 구조
+
+```
+codes/    분석 스크립트 및 노트북
+figures/  분석 결과 그래프
+```
+
+## 01. 수익률 분포 분석 결과
 
 분석 대상: KOSPI 종합지수 (^KS11), 2019-01-03 ~ 2026-07-30, 1,857 관측치
 
@@ -51,6 +58,47 @@ Christoffersen 검정이 필요한 근거가 된다.
 
 ![Return Analysis](figures/01_returns_distribution_image.png)
 
+## 02. Historical Simulation VaR
+
+추정 윈도우 250일, 신뢰수준 99%, 판정 가능일 1,607일
+
+| 항목 | 값 |
+|---|---|
+| 실제 위반 | 39회 |
+| 기대 위반 | 16.1회 |
+| 위반율 | 2.43% |
+| 평균 VaR | 3.41% |
+| 최저 VaR | 2.10% (2020-01-09) |
+| 최고 VaR | 9.96% (2026-07-29) |
+
+99% 신뢰수준에서 기대되는 위반의 2.4배가 발생하여, 모형이 실제 손실
+위험을 체계적으로 과소평가하고 있음이 확인된다. Kupiec POF 검정 기준
+LR 통계량은 23.63(p ≈ 1.2×10⁻⁶)으로 정확 커버리지 가설은 기각된다.
+
+위반의 시간적 분포는 더 중요한 문제를 시사한다. 전체 39회 중 51%가
+2020년(9회)과 2026년(11회, 7개월분)에 집중되어 있으며, 이는 위반이
+독립적으로 발생한다는 VaR 모형의 암묵적 가정과 배치된다. 위반 빈도뿐
+아니라 독립성을 함께 검정해야 할 근거이며, 후속 단계에서 Christoffersen
+검정으로 확인한다.
+
+| 연도 | 위반 횟수 |
+|---|---|
+| 2020 | 9 |
+| 2021 | 1 |
+| 2022 | 6 |
+| 2023 | 3 |
+| 2024 | 4 |
+| 2025 | 5 |
+| 2026 | 11 (7개월분) |
+
+추정 윈도우 내 최저 VaR이 2020-01-09(2.10%)에 관측된 점은 Historical
+Simulation의 구조적 한계를 드러낸다. 과거 250일의 경험적 분포에만
+의존하므로 안정기 직후의 충격에 대응하지 못하며, 반대로 최고 VaR은
+급락이 이미 발생한 2026-07-29(9.96%)에 나타나 사후적 과잉 반응을 보인다.
+관측 기간 중 VaR 수준은 최저 대비 최고가 4.7배에 달했다.
+
+![Historical VaR](figures/02_historical_var_image.png)
+
 ## 데이터
 
 KRX 정보데이터시스템의 회원제 전환으로 pykrx 사용이 제한되어
@@ -61,5 +109,5 @@ Yahoo Finance API로 전환. 수정종가 기준 일별 데이터.
 ```
 pip install -r requirements.txt
 python codes/01_log_return_distribution.py
+python codes/02_Historical_VaR.py
 ```
-
